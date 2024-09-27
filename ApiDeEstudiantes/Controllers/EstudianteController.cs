@@ -36,12 +36,16 @@ namespace ApiDeEstudiantes.Controllers
                 MatriculaId = estudiante.MatriculaId,
                 NombreEstudiante = estudiante.NombreEstudiante,
                 CarreraId = estudiante.CarreraId
+
             };
 
             _context.Estudiante.Add(newEstudiante);
             await _context.SaveChangesAsync();
             return CreatedAtAction(nameof(Get), new { id = estudiante.EstudianteId }, estudiante);
         }
+
+        [HttpPut("ActualizarEstudiantes")]
+        public async
 
     }
 }
