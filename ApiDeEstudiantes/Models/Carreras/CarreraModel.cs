@@ -1,4 +1,4 @@
-﻿namespace ApiDeEstudiantes.Models
+﻿namespace ApiDeEstudiantes.Models.Carreras
 {
     public class CarreraModel
     {

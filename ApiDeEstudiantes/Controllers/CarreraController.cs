@@ -1,6 +1,6 @@
 ﻿using ApiDeEstudiantes.Context;
 using ApiDeEstudiantes.Entidades;
-using ApiDeEstudiantes.Models;
+using ApiDeEstudiantes.Models.Carreras;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -18,9 +18,17 @@ namespace ApiDeEstudiantes.Controllers
         }
 
         [HttpGet("ObtenerCarrera")]
-        public async Task<ActionResult<IEnumerable<Carrera>>> Get()
+        public async Task<ActionResult<IEnumerable<CarreraModel>>> Get()
         {
-            return await _context.Carrera.ToListAsync();
+            var carreras = await _context.Carrera
+            .Select(c => new CarreraModel
+            {
+                CarreraId = c.CarreraId,
+                NombreCarrera = c.NombreCarrera
+            })
+            .ToListAsync();
+
+            return Ok(carreras);
         }
 
         [HttpPost("AgregarCarrera")]
